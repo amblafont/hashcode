@@ -1,4 +1,4 @@
-class Ride:
+class Point:
 
     def __init__(self, r, c):
         self.r = r

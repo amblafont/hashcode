@@ -13,8 +13,7 @@ class Vehicule:
     # Plus le score est proche de zero, plus il est bon
     def score(self, currentStep: int, ride: Ride) -> int:
         distance = abs(self.position.r - ride.startPoint.r) + abs(self.position.c - ride.startPoint.c)
-        earliestStart = max(0, ride.earliestTime - distance - currentStep)
-        return distance + earliestStart
+        return max(distance, ride.earliestTime - currentStep)
 
     def sortRidesByScore(self, currentStep : int, rides : List[Ride]):
         ridesWithScore = [(ride, self.score(currentStep, ride)) for ride in rides]

@@ -2,6 +2,7 @@ from typing import List
 from Map import *
 from Vehicule import *
 from Point import *
+import sys
 import Ride
 class Problem:
 
@@ -19,6 +20,9 @@ class Problem:
             self.MapVehiculesRides()
             self.MakeVehiculesMove()
             self.currentStep += 1
+            print(" self.rides longueur: " + str(len(self.rides)), end='')
+            sys.stdout.flush()
+            print()
         
     def GetInactiveVehicules(self) -> List[Vehicule]:
         inactiveVehicules = []
@@ -32,8 +36,8 @@ class Problem:
     def MapVehiculesRides(self) -> List[Vehicule]:
         for i in range(len(self.rides), 0):
             if ExcludeTooLongRide(self.rides[i], self.currentStep):
-                rides[i].status = RideStatus.unavailable
-                rides.remove(rides[i])
+                self.rides[i].status = RideStatus.unavailable
+                self.rides.remove(rides[i])
 
         vehicules = self.GetInactiveVehicules()
         for vehicule in vehicules:
@@ -44,10 +48,12 @@ class Problem:
             for rideWithScore in vehicule.sortedRidesWithScores:
                 if rideWithScore[0].status == RideStatus.available:
                     rideWithScore[0].status = RideStatus.unavailable
+                    self.rides.remove(rideWithScore[0])
                     if (not ExcludeTooLongRide(rideWithScore[0], rideWithScore[1] + self.currentStep)):
                         rideWithScore[0].status = RideStatus.unavailable
                         vehicule.rides.append(rideWithScore[0])
                         vehicule.isMoving = True
+                        
                         break
         return sortedVehicules
 

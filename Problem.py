@@ -14,6 +14,10 @@ class Problem:
         self.maxTime = maxTime
         self.bonus = bonus
 
+    def LaunchSimulation() -> None:
+        MapVehiculesRides()
+        MakeVehiculesMove()
+        
     def GetInactiveVehicules() -> List[Vehicule]:
     	inactiveVehicules = []
     	for vehicule in self.vehicules:
@@ -31,3 +35,7 @@ class Problem:
     	var sortedVehicules = [ [] for i in range(self.map.nbRows + self.map.nbColumns) ]
     	for vehicule in vehicule:
     		sortedVehicules[vehicule.sortedRidesWithScores[0][1]].append(vehicule)
+
+    def MakeVehiculesMove() -> None:
+        return
+

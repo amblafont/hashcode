@@ -10,6 +10,3 @@ class Ride:
         self.latestTime = latestTime
         self.status = RideStatus.available
         self.number = number
-
-    def setStatus (status: RideStatus) -> None:
-        self.status = status

@@ -11,9 +11,9 @@ class Problem:
         self.maxTime = maxTime
         self.bonus = bonus
 
-    def GetInactiveVehicules() -> List[Vehicule.Vehicule]:
-    	inactiveVehicules = []
-    	for vehicule in self.vehicules:
-    		if (not vehicule.isActive):
-    			inactiveVehicules.append(vehicule)
-    	return inactiveVehicules
+    def getInactiveVehicules() -> List[Vehicule.Vehicule]:
+        inactiveVehicules = []
+        for vehicule in self.vehicules:
+            if (not vehicule.isActive):
+                inactiveVehicules.append(vehicule)
+        return inactiveVehicules

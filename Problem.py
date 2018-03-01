@@ -10,3 +10,10 @@ class Problem:
         self.rides = Rides
         self.maxTime = maxTime
         self.bonus = bonus
+
+    def GetInactiveVehicules()
+    	inactiveVehicules = []
+    	for vehicule in self.vehicules:
+    		if (!vehicule.isActive):
+    			inactiveVehicules.append(vehicule)
+    	return inactiveVehicules

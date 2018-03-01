@@ -13,7 +13,7 @@ class Problem:
         self.rides = rides
         self.maxTime = maxTime
         self.bonus = bonus
-        
+
     def GetInactiveVehicules() -> List[Vehicule]:
     	inactiveVehicules = []
     	for vehicule in self.vehicules:
@@ -27,3 +27,7 @@ class Problem:
     			self.rides.remove(ride)
 
     	vehicules = GetInactiveVehicules()
+
+    	var sortedVehicules = [ [] for i in range(self.map.nbRows + self.map.nbColumns) ]
+    	for vehicule in vehicule:
+    		sortedVehicules[vehicule.sortedRidesWithScores[0][1]].append(vehicule)

@@ -34,7 +34,7 @@ class Problem:
     	vehicules = GetInactiveVehicules()
 
     	sortedVehicules = [ [] for i in range(self.map.nbRows + self.map.nbColumns) ]
-    	for vehicule in vehicule:
+    	for vehicule in vehicules:
     		sortedVehicules[vehicule.sortedRidesWithScores[0][1]].append(vehicule)
 
     def MakeVehiculesMove() -> None:

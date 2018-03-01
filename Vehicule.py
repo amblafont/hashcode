@@ -6,3 +6,4 @@ class Vehicule:
     def __init__(self, position: Point , rides: List[Ride.Ride]) -> None:
         self.position = position
         self.rides = rides
+        self.isActive = False;

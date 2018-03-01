@@ -17,5 +17,5 @@ class Vehicule:
         return distance + earliestStart
 
     def sortRidesByScore(currentStep : int, rides : List[Ride]) -> List[Ride]:
-        sorted(rides, key=lambda ride:self.score(currentStep,ride))
+        return sorted(rides, key=lambda ride:self.score(currentStep,ride))
 

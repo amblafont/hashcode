@@ -44,6 +44,46 @@ class Problem:
     				vehicule.isActive = True
     				break
 
-    def MakeVehiculesMove(self) -> None:
-        return
+    def MakeVehiculesMove(self) -> None: 
+        for vehicule in self.vehicules:
+            # la voiture a au moins un trajet attribuée
+            if vehicule.rides:
+                # dernier trajet attribué à la voiture
+                ride = vehicule.rides[-1] 
+                         
+                # le trajet est disponible
+                if ride.available:
+                    # la voiture est sur le point de départ
+                    if vehicule.position == ride.startPoint:
+                        # la voiture prend en charge le trajet
+                        if self.currentStep - ride.earliestTime >= 0: 
+                            vehicule.isActive = True
+                        # la voiture attend
+                        else:
+                            pass
+                    # la voiture se dirige vers le point d'arrivée
+                    else:
+                        if vehicule.position.r > ride.finishPoint.r: 
+                            vehicule.position.r -= 1 
+                        elif vehicule.position.r < ride.finishPoint.r: 
+                            vehicule.position.r += 1 
+                        elif vehicule.position.c > ride.finishPoint.c: 
+                            vehicule.position.c -= 1 
+                        elif vehicule.position.c < ride.finishPoint.c: 
+                            vehicule.position.c +=1 
+                        else: 
+                            vehicule.isActive = False
+ 
+                # la voiture se déplace le long du trajet jusqu'au point d'arrivée
+                if vehicule.isActive: 
+                    if vehicule.position.r > ride.finishPoint.r: 
+                        vehicule.position.r -= 1 
+                    elif vehicule.position.r < ride.finishPoint.r: 
+                        vehicule.position.r += 1 
+                    elif vehicule.position.c > ride.finishPoint.c: 
+                        vehicule.position.c -= 1 
+                    elif vehicule.position.c < ride.finishPoint.c: 
+                        vehicule.position.c +=1 
+                    else: 
+                        vehicule.isActive = False
 

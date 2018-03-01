@@ -15,8 +15,8 @@ class Problem:
         self.bonus = bonus
 
     def LaunchSimulation(self) -> None:
-        MapVehiculesRides()
-        MakeVehiculesMove()
+        self.MapVehiculesRides()
+        self.MakeVehiculesMove()
         self.currentStep += 1
         
     def GetInactiveVehicules(self) -> List[Vehicule]:

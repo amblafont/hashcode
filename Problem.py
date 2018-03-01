@@ -13,6 +13,10 @@ class Problem:
         self.rides = rides
         self.maxTime = maxTime
         self.bonus = bonus
+
+    def LaunchSimulation() -> None:
+        MapVehiculesRides()
+        MakeVehiculesMove()
         
     def GetInactiveVehicules() -> List[Vehicule]:
     	inactiveVehicules = []
@@ -27,3 +31,6 @@ class Problem:
     			self.rides.remove(ride)
 
     	vehicules = GetInactiveVehicules()
+
+    def MakeVehiculesMove() -> None:
+        return

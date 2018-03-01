@@ -17,3 +17,11 @@ class Problem:
     		if (not vehicule.isActive):
     			inactiveVehicules.append(vehicule)
     	return inactiveVehicules
+
+    def MapVehiculesRides() -> None:
+    	for i in range(len(self.rides, 0)):
+    		if self.rides[i].status != RideStatus.available:
+    			self.rides.remove(ride)
+
+    	vehicules = GetInactiveVehicules()
+    	

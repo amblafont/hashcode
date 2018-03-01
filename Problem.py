@@ -18,6 +18,7 @@ class Problem:
         MapVehiculesRides()
         MakeVehiculesMove()
         
+
     def GetInactiveVehicules(self) -> List[Vehicule]:
     	inactiveVehicules = []
     	for vehicule in self.vehicules:
@@ -32,25 +33,10 @@ class Problem:
 
     	vehicules = GetInactiveVehicules()
 
-    def MakeVehiculesMove(self) -> None:
-        for vehicule in self.vehicules:
-            if vehicule.rides:
-                ride = vehicule.rides[-1]
+    	sortedVehicules = [ [] for i in range(self.map.nbRows + self.map.nbColumns) ]
+    	for vehicule in vehicule:
+    		sortedVehicules[vehicule.sortedRidesWithScores[0][1]].append(vehicule)
 
-                # voiture déjà sur le trajet
-                if vehicule.isActive:
-                    if vehicule.position.r > ride.position.r:
-                        vehicule.position.r -= 1
-                    elif vehicule.position.r < ride.position.r:
-                        vehicule.position.r += 1
-                    elif vehicule.position.c > ride.position.c:
-                        vehicule.position.c -= 1
-                    elif vehicule.position.c < ride.position.c:
-                        vehicule.position.c +=1
-                    else:
-                        vehicule.isActive = False
-                        
-                # voiture attend de pouvoir faire le trajet
-                elif ride.available:
-                    if ride.position == vehicule.position:
-                        vehicule.isActive = True
+    def MakeVehiculesMove() -> None:
+        return
+

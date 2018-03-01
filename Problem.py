@@ -17,8 +17,8 @@ class Problem:
     def LaunchSimulation(self) -> None:
         MapVehiculesRides()
         MakeVehiculesMove()
+        self.currentStep += 1
         
-
     def GetInactiveVehicules(self) -> List[Vehicule]:
     	inactiveVehicules = []
     	for vehicule in self.vehicules:
@@ -42,33 +42,32 @@ class Problem:
             # la voiture a au moins un trajet attribuée
             if vehicule.rides:
                 # dernier trajet attribué à la voiture
-                ride = vehicule.rides[-1] 
-                         
+                ride = vehicule.rides[-1]
+
                 # le trajet est disponible
-                if ride.available:
+                if ride.status = RideStatus.available:
                     # la voiture est sur le point de départ
                     if vehicule.position == ride.startPoint:
                         # la voiture prend en charge le trajet
                         if self.currentStep - ride.earliestTime >= 0: 
                             vehicule.isActive = True
+                            ride.status = RideStatus.ongoing
                         # la voiture attend
                         else:
                             pass
-                    # la voiture se dirige vers le point d'arrivée
-                    else:
-                        if vehicule.position.r > ride.finishPoint.r: 
-                            vehicule.position.r -= 1 
-                        elif vehicule.position.r < ride.finishPoint.r: 
-                            vehicule.position.r += 1 
-                        elif vehicule.position.c > ride.finishPoint.c: 
-                            vehicule.position.c -= 1 
-                        elif vehicule.position.c < ride.finishPoint.c: 
-                            vehicule.position.c +=1 
-                        else: 
-                            vehicule.isActive = False
+                    # la voiture se dirige vers le point de départ
+                    elif vehicule.position.r > ride.startPoint.r: 
+                        vehicule.position.r -= 1 
+                    elif vehicule.position.r < ride.startPoint.r: 
+                        vehicule.position.r += 1 
+                    elif vehicule.position.c > ride.startPoint.c: 
+                        vehicule.position.c -= 1 
+                    elif vehicule.position.c < ride.startPoint.c: 
+                        vehicule.position.c +=1 
  
-                # la voiture se déplace le long du trajet jusqu'au point d'arrivée
-                if vehicule.isActive: 
+                # le trajet est en cours par la voiture
+                if ride.status = RideStatus.ongoing and vehicule.isActive:
+                    # la voiture se déplace jusqu'au point d'arrivée
                     if vehicule.position.r > ride.finishPoint.r: 
                         vehicule.position.r -= 1 
                     elif vehicule.position.r < ride.finishPoint.r: 
@@ -79,4 +78,5 @@ class Problem:
                         vehicule.position.c +=1 
                     else: 
                         vehicule.isActive = False
+                        ride.status = RideStatus.finished
 

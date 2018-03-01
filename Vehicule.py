@@ -8,7 +8,7 @@ class Vehicule:
     def __init__(self, position: Point , rides: List[Ride]) -> None:
         self.position = position
         self.rides = rides
-        self.isActive = False;
+        self.isActive = False
 
     # Plus le score est proche de zero, plus il est bon
     def score(currentStep: int, ride: Ride) -> int:

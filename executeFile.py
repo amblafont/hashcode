@@ -6,7 +6,8 @@ import sys
 def executeFile(file : str):
     pb = inputFileToProblem(file)
     pb.LaunchSimulation()
-    problemToStdOut(pb)
+    print(pb.score())
+    #problemToStdOut(pb)
 
 executeFile(sys.argv[1])
 

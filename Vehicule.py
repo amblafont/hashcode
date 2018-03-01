@@ -16,6 +16,16 @@ class Vehicule:
         earliestStart = math.min(0, ride.earliestTime - currentStep)
         return distance + earliestStart
 
-    def sortRidesByScore(currentStep : int, rides : List[Ride]) -> List[Ride]:
-        return sorted(rides, key=lambda ride:self.score(currentStep,ride))
+    def sortRidesByScore(currentStep : int, rides : List[Ride]):
+        ridesWithScore = [(ride, self.score(currentStep, ride)) for ride in rides]
+        return sorted(ridesWithScore, key=lambda rideWithScore:rideWithScore[1])
+    def updateRidesByScore(currentStep : int, rides : List[Ride]) -> None:
+        self.sortedRidesWithScores = self.sortRidesByScore(currentStep, rides)
+
+
+# TODO vérifier que le truc sortedRidesWithScore est non vide
+def sortVehiculesByRidesWithScore(vehicules : List[Vehicule]) -> List[Vehicule]:
+    return sorted(vehicules, key = lambda vehicule: [rideWithScore[1] for rideWithScore in vehicule.sortedRidesWithScores ])
+
+
 

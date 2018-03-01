@@ -14,25 +14,26 @@ class Problem:
         self.maxTime = maxTime
         self.bonus = bonus
 
-    def LaunchSimulation() -> None:
+    def LaunchSimulation(self) -> None:
         MapVehiculesRides()
         MakeVehiculesMove()
         
-    def GetInactiveVehicules() -> List[Vehicule]:
+
+    def GetInactiveVehicules(self) -> List[Vehicule]:
     	inactiveVehicules = []
     	for vehicule in self.vehicules:
     		if (not vehicule.isActive):
     			inactiveVehicules.append(vehicule)
     	return inactiveVehicules
 
-    def MapVehiculesRides() -> None:
+    def MapVehiculesRides(self) -> None:
     	for i in range(len(self.rides, 0)):
     		if self.rides[i].status != RideStatus.available:
     			self.rides.remove(ride)
 
     	vehicules = GetInactiveVehicules()
 
-    	var sortedVehicules = [ [] for i in range(self.map.nbRows + self.map.nbColumns) ]
+    	sortedVehicules = [ [] for i in range(self.map.nbRows + self.map.nbColumns) ]
     	for vehicule in vehicule:
     		sortedVehicules[vehicule.sortedRidesWithScores[0][1]].append(vehicule)
 

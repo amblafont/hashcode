@@ -5,6 +5,4 @@ class Point:
         self.c = c
 
     def __eq__(self, other):
-        if isinstance(other, A):
-            return self.r == other.r and self.c == other.c
-        return NotImplemented
+        return self.r == other.r and self.c == other.c

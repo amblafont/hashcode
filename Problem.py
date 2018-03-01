@@ -20,35 +20,35 @@ class Problem:
         self.currentStep += 1
         
     def GetInactiveVehicules(self) -> List[Vehicule]:
-    	inactiveVehicules = []
-    	for vehicule in self.vehicules:
-    		if (not vehicule.isMoving):
-    			inactiveVehicules.append(vehicule)
-    	return inactiveVehicules
+        inactiveVehicules = []
+        for vehicule in self.vehicules:
+            if (not vehicule.isMoving):
+                inactiveVehicules.append(vehicule)
+        return inactiveVehicules
 
     
 
     def MapVehiculesRides(self) -> List[Vehicule]:
-    	for i in range(len(self.rides), 0):
-    		if ExcludeTooLongRides(self.rides[i], self.currentStep):
-    			rides[i].status = RideStatus.unavailable
-                rides.remove(ride)
+        for i in range(len(self.rides), 0):
+            if ExcludeTooLongRides(self.rides[i], self.currentStep):
+                rides[i].status = RideStatus.unavailable
+                rides.remove(rides[i])
 
-    	vehicules = self.GetInactiveVehicules()
-    	for vehicule in vehicules:
-    		vehicule.updateRidesByScore(self.currentStep, self.rides)
+        vehicules = self.GetInactiveVehicules()
+        for vehicule in vehicules:
+            vehicule.updateRidesByScore(self.currentStep, self.rides)
 
-    	sortedVehicules = sortVehiculesByRidesWithScore(vehicules)
-    	for vehicule in sortedVehicules:
-    		for rideWithScore in vehicule.sortedRidesWithScores:
-    			if rideWithScore[0].status == RideStatus.available:
+        sortedVehicules = sortVehiculesByRidesWithScore(vehicules)
+        for vehicule in sortedVehicules:
+            for rideWithScore in vehicule.sortedRidesWithScores:
+                if rideWithScore[0].status == RideStatus.available:
                     rideWithScore[0].status = RideStatus.unavailable
                     if (not ExcludeTooLongRides(rideWithScore[0], rideWithScore[1] + self.currentStep)):
                         rideWithScore[0].status = RideStatus.unavailable
-        				vehicule.rides.append(rideWithScore[0])
-        				vehicule.isMoving = True
+                        vehicule.rides.append(rideWithScore[0])
+                        vehicule.isMoving = True
                         break
-    	return sortedVehicules
+        return sortedVehicules
 
     def MakeVehiculesMove(self) -> None: 
         for vehicule in self.vehicules:

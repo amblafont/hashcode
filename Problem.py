@@ -1,5 +1,8 @@
 from typing import List
-import Map,Ride,Vehicule
+from Map import *
+from Vehicule import *
+from Point import *
+import Ride
 class Problem:
 
 
@@ -7,11 +10,11 @@ class Problem:
         self.currentStep = 0
         self.map = map
         self.vehicules = [ Vehicule(Point(0,0), []) for i in range(nbVehicules)]
-        self.rides = Rides
+        self.rides = rides
         self.maxTime = maxTime
         self.bonus = bonus
 
-    def getInactiveVehicules() -> List[Vehicule.Vehicule]:
+    def getInactiveVehicules() -> List[Vehicule]:
         inactiveVehicules = []
         for vehicule in self.vehicules:
             if (not vehicule.isActive):

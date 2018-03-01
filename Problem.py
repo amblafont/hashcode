@@ -15,7 +15,7 @@ class Problem:
         self.bonus = bonus
 
     def LaunchSimulation(self) -> None:
-        while (self.currentStep < self.maxTime):
+        while (self.currentStep < self.maxTime or not self.rides):
             self.MapVehiculesRides()
             self.MakeVehiculesMove()
             self.currentStep += 1

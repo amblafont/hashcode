@@ -32,7 +32,7 @@ class Problem:
 
     	vehicules = GetInactiveVehicules()
 
-    	var sortedVehicules = [ [] for i in range(self.map.nbRows + self.map.nbColumns) ]
+    	sortedVehicules = [ [] for i in range(self.map.nbRows + self.map.nbColumns) ]
     	for vehicule in vehicule:
     		sortedVehicules[vehicule.sortedRidesWithScores[0][1]].append(vehicule)
 

@@ -26,12 +26,12 @@ class Problem:
     			inactiveVehicules.append(vehicule)
     	return inactiveVehicules
 
-    def MapVehiculesRides(self) -> None:
-    	for i in range(len(self.rides, 0)):
+    def MapVehiculesRides(self) -> List[Vehicule]:
+    	for i in range(len(self.rides), 0):
     		if self.rides[i].status != RideStatus.available:
     			self.rides.remove(ride)
 
-    	vehicules = GetInactiveVehicules()
+    	vehicules = self.GetInactiveVehicules()
     	for vehicule in vehicules:
     		vehicule.updateRidesByScore(self.currentStep, self.rides)
 
@@ -43,6 +43,8 @@ class Problem:
     				vehicule.rides.append(rideWithScore[0])
     				vehicule.isMoving = True
     				break
+    				
+    	return sortedVehicules
 
     def MakeVehiculesMove(self) -> None: 
         for vehicule in self.vehicules:

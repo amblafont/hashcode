@@ -1,5 +1,4 @@
 from typing import List,Type
-from math import *
 from Ride import *
 from Point import *
 class Vehicule:
@@ -13,8 +12,8 @@ class Vehicule:
 
     # Plus le score est proche de zero, plus il est bon
     def score(self, currentStep: int, ride: Ride) -> int:
-        distance = math.fabs(self.position.r - ride.startPoint.r) + math.fabs(self.position.c - ride.startPoint.c)
-        earliestStart = math.min(0, ride.earliestTime - currentStep)
+        distance = abs(self.position.r - ride.startPoint.r) + abs(self.position.c - ride.startPoint.c)
+        earliestStart = min(0, ride.earliestTime - currentStep)
         return distance + earliestStart
 
     def sortRidesByScore(self, currentStep : int, rides : List[Ride]):

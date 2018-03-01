@@ -52,7 +52,7 @@ class Problem:
                 ride = vehicule.rides[-1]
 
                 # le trajet est disponible
-                if ride.status = RideStatus.available:
+                if ride.status == RideStatus.available:
                     # la voiture est sur le point de départ
                     if vehicule.position == ride.startPoint:
                         # la voiture prend en charge le trajet
@@ -73,7 +73,7 @@ class Problem:
                         vehicule.position.c +=1 
  
                 # le trajet est en cours par la voiture
-                if ride.status = RideStatus.ongoing and vehicule.isActive:
+                if ride.status == RideStatus.ongoing and vehicule.isActive:
                     # la voiture se déplace jusqu'au point d'arrivée
                     if vehicule.position.r > ride.finishPoint.r: 
                         vehicule.position.r -= 1 

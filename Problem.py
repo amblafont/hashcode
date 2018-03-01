@@ -48,11 +48,12 @@ class Problem:
             for rideWithScore in vehicule.sortedRidesWithScores:
                 if rideWithScore[0].status == RideStatus.available:
                     rideWithScore[0].status = RideStatus.unavailable
+                    self.rides.remove(rideWithScore[0])
                     if (not ExcludeTooLongRide(rideWithScore[0], rideWithScore[1] + self.currentStep)):
                         rideWithScore[0].status = RideStatus.unavailable
                         vehicule.rides.append(rideWithScore[0])
                         vehicule.isMoving = True
-                        self.rides.remove(rideWithScore[0])
+                        
                         break
         return sortedVehicules
 

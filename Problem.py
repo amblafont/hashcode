@@ -5,6 +5,14 @@ from Point import *
 import sys
 import Ride
 class Problem:
+    def score(self) -> int:
+        score = 0
+        for vehicule in self.vehicules:
+            for ride in vehicule.rides:
+                score += 1
+                if ride.accessedTime <= ride.earliestTime:
+                    score += self.bonus
+        return score
 
 
     def __init__(self, map:Map, nbVehicules:int, rides : List[Ride.Ride], maxTime : int, bonus:int) -> None:
@@ -20,9 +28,9 @@ class Problem:
             self.MapVehiculesRides()
             self.MakeVehiculesMove()
             self.currentStep += 1
-            print(" self.rides longueur: " + str(len(self.rides)), end='')
-            sys.stdout.flush()
-            print()
+            #print(" self.rides longueur: " + str(len(self.rides)), end='')
+            #sys.stdout.flush()
+            #print()
         
     def GetInactiveVehicules(self) -> List[Vehicule]:
         inactiveVehicules = []
@@ -52,6 +60,7 @@ class Problem:
                     if (not ExcludeTooLongRide(rideWithScore[0], rideWithScore[1] + self.currentStep)):
                         rideWithScore[0].status = RideStatus.unavailable
                         vehicule.rides.append(rideWithScore[0])
+                        rideWithScore[0].accessedTime = self.currentStep
                         vehicule.isMoving = True
                         
                         break

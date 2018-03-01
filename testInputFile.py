@@ -1,7 +1,10 @@
 from readInput import inputFileToProblem
+from outputProblem import problemToStdOut
 from  inputFileNames import *
 
 
 
-inputFileToProblem(FILE_1)
+pb = inputFileToProblem(FILE_1)
+problemToStdOut(pb)
+
 

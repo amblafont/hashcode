@@ -1,10 +1,11 @@
 from typing import List,Type
 from math import *
-import Point,Ride
+from Ride import *
+from Point import *
 class Vehicule:
 
 
-    def __init__(self, position: Point , rides: List[Ride.Ride]) -> None:
+    def __init__(self, position: Point , rides: List[Ride]) -> None:
         self.position = position
         self.rides = rides
         self.isActive = False;
@@ -14,3 +15,7 @@ class Vehicule:
         distance = math.fabs(self.position.r - ride.startPoint.r) + math.fabs(self.position.c - ride.startPoint.c)
         earliestStart = math.min(0, ride.earliestTime - currentStep)
         return distance + earliestStart
+
+    def sortRidesByScore(currentStep : int, rides : List[Ride]) -> List[Ride]:
+        sorted(rides, key=lambda ride:self.score(currentStep,ride))
+

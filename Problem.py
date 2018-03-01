@@ -32,11 +32,18 @@ class Problem:
     			self.rides.remove(ride)
 
     	vehicules = GetInactiveVehicules()
-
-    	sortedVehicules = [ [] for i in range(self.map.nbRows + self.map.nbColumns) ]
     	for vehicule in vehicules:
-    		sortedVehicules[vehicule.sortedRidesWithScores[0][1]].append(vehicule)
+    		vehicule.updateRidesByScore(self.currentStep, self.rides)
 
-    def MakeVehiculesMove() -> None:
+    	sortedVehicules = sortVehiculesByRidesWithScore(vehicules)
+    	for vehicule in sortedVehicules:
+    		for rideWithScore in vehicule.sortedRidesWithScores:
+    			if rideWithScore[0].status == RideStatus.available:
+    				rideWithScore[0].status = RideStatus.ongoing
+    				vehicule.rides.append(rideWithScore[0])
+    				vehicule.isActive = True
+    				break
+
+    def MakeVehiculesMove(self) -> None:
         return
 
